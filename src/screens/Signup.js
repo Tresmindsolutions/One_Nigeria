@@ -32,6 +32,18 @@ export default class Login extends Component {
   }
 
   render() {
+    data = [
+      { label: "Alabama", value: "football", color: "#636262" },
+      { label: "Alaska", value: "football", color: "#636262" },
+      { label: "California", value: "baseball", color: "#636262" },
+      { label: "Florida", value: "football", color: "#636262" },
+      { label: "Hawaii", value: "baseball", color: "#636262" },
+      { label: "Maryland", value: "football", color: "#636262" },
+      { label: "New Jersey", value: "baseball", color: "#636262" },
+      { label: "New Mexico", value: "football", color: "#636262" },
+      { label: "New York", value: "baseball", color: "#636262" },
+      { label: "Texas", value: "hockey", color: "#636262" }
+    ]
     const placeholder = {
       label: "All States",
       value: null
@@ -42,43 +54,39 @@ export default class Login extends Component {
       <View style={styles.container}>
         <ImageBackground
           source={require("../../assets/images/mapNew2.png")}
-          style={{ height: "80%", width: "100%" }}
+          style={{position: "absolute", height: "100%", width: "100%",backgroundColor: "#f5f5f5" }}
           resizeMode={"stretch"}
         >
           <Image
             source={require("../../assets/images/logoLogin.png")}
             style={{
-              height: "30%",
-              width: "60%",
+              height: 120,
+              width: "70%",
               alignSelf: "center"
             }}
             resizeMode={"contain"}
           />
-        </ImageBackground>
-        {/* <Content> */}
         <View style={styles.main}>
           <View style={styles.login}>
-            <Text style={styles.loginTxt}>Signup </Text>
+            <Text style={styles.loginTxt}>Signup</Text>
           </View>
 
           <View style={styles.capPic}>
             <Image
               source={require("../../assets/images/userImg.png")}
-              style={{ height: 70, width: 70 }}
+              style={{ height: 85, width: "100%" }}
               resizeMode={"contain"}
             />
           </View>
           <View style={styles.mainUpload}>
-            <View style={styles.takePhoto}>
-              <View style={{ borderWidth: 0 }}>
+            <TouchableOpacity style={styles.takePhoto}>
                 <Image
                   source={require("../../assets/images/camera.png")}
-                  style={{ height: 25, width: 25 }}
+                  style={{ height: 20, width: 22 }}
                 />
-              </View>
-              <View style={{ borderWidth: 0 }}>
                 <Text
                   style={{
+                    fontSize: 16,
                     color: FontColor.green,
                     fontFamily: "Nunito-Bold",
                     marginLeft: 8
@@ -86,27 +94,23 @@ export default class Login extends Component {
                 >
                   Take a Photo
                 </Text>
-              </View>
-            </View>
+            </TouchableOpacity>
             <View
               style={{
-                // width: 1,
-                borderWidth: 0.4,
-                color: FontColor.gray,
-                marginTop: 8,
+                borderWidth: 0.6,
+                borderColor: "#999",
+                marginVertical: 8,
                 height: 25
               }}
             ></View>
-            <View style={styles.upload}>
-              <View style={{ borderWidth: 0 }}>
+            <TouchableOpacity style={styles.takePhoto}>
                 <Image
                   source={require("../../assets/images/img.png")}
-                  style={{ height: 25, width: 25 }}
+                  style={{ height: 18, width: 24 }}
                 />
-              </View>
-              <View style={{ borderWidth: 0 }}>
                 <Text
                   style={{
+                    fontSize: 16,
                     color: FontColor.green,
                     fontFamily: "Nunito-Bold",
                     marginLeft: 8
@@ -114,20 +118,16 @@ export default class Login extends Component {
                 >
                   Upload
                 </Text>
-              </View>
-            </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.user}>
-            <View style={styles.UserImg}>
               <FontAwesome5
                 size={20}
                 color={FontColor.green}
                 name="calendar-day"
-                style={{ borderWidth: 0 }}
+                style={{}}
+                
               />
-            </View>
-
-            <View style={styles.UserText}>
               <DatePicker
                 date={this.state.date}
                 mode="date"
@@ -137,19 +137,18 @@ export default class Login extends Component {
                 maxDate="05-22-2040"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
-                style={{ width: "100%", borderWidth: 1 }}
+                style={{ width: "85%",alignSelf: "flex-end"}}
                 customStyles={{
                   dateIcon: {
-                    position: "absolute",
+                    // position: "absolute",
                     // left: 0,
                     // top: 4,
-                    right: 10,
-                    width: 30
+                    // right: 10,
+                    // width: 30
                   },
 
                   dateInput: {
-                    marginLeft: 0,
-                    borderWidth: 0,
+                    borderWidth: null,
                     alignItems: "flex-start"
                   }
                   // ... You can check the source to find the other keys.
@@ -159,21 +158,20 @@ export default class Login extends Component {
                   this.setState({ date: date });
                 }}
               />
-            </View>
+            {/* </View> */}
           </View>
 
           <View style={styles.PwdBox}>
-            <View style={styles.PwdImage}>
               <Image
                 source={require("../../assets/images/user.png")}
                 style={{ height: 22, width: 22 }}
                 resizeMode={"contain"}
               />
-            </View>
-            <View style={styles.PwdField}>
+              <View style={{width: "85%"}}>
               <RNPickerSelect
                 useNativeAndroidPickerStyle={false}
                 placeholder={placeholder}
+                style={pickerSelectStyles}
                 placeholderTextColor={theme.gray}
                 onValueChange={value => console.log(value)}
                 Icon={() => {
@@ -181,37 +179,22 @@ export default class Login extends Component {
                     <AntDesign
                       name="caretdown"
                       size={18}
-                      style={{ marginTop: 5 }}
                       color={theme.green}
                     />
                   );
                 }}
                 style={styles}
-                items={[
-                  { label: "Alabama", value: "football", color: "#636262" },
-                  { label: "Alaska", value: "football", color: "#636262" },
-                  { label: "California", value: "baseball", color: "#636262" },
-                  { label: "Florida", value: "football", color: "#636262" },
-                  { label: "Hawaii", value: "baseball", color: "#636262" },
-                  { label: "Maryland", value: "football", color: "#636262" },
-                  { label: "New Jersey", value: "baseball", color: "#636262" },
-                  { label: "New Mexico", value: "football", color: "#636262" },
-                  { label: "New York", value: "baseball", color: "#636262" },
-                  { label: "Texas", value: "hockey", color: "#636262" }
-                ]}
+                items={data}
               />
-            </View>
+          </View>
           </View>
           <View style={styles.PwdBox}>
-            <View style={styles.PwdImage}>
               <FontAwesome5
                 name="globe-africa"
-                size={22}
-                style={{ marginTop: -2 }}
+                size={22}s
                 color={theme.green}
               />
-            </View>
-            <View style={styles.PwdField}>
+              <View style={{width: "85%"}}>
               <RNPickerSelect
                 useNativeAndroidPickerStyle={false}
                 placeholder={placeholder}
@@ -222,32 +205,21 @@ export default class Login extends Component {
                     <AntDesign
                       name="caretdown"
                       size={18}
-                      style={{ marginTop: 5 }}
+                      // style={{ marginTop: 5 }}
                       color={theme.green}
                     />
                   );
                 }}
                 style={styles}
-                items={[
-                  { label: "Alabama", value: "football", color: "#636262" },
-                  { label: "Alaska", value: "football", color: "#636262" },
-                  { label: "California", value: "baseball", color: "#636262" },
-                  { label: "Florida", value: "football", color: "#636262" },
-                  { label: "Hawaii", value: "baseball", color: "#636262" },
-                  { label: "Maryland", value: "football", color: "#636262" },
-                  { label: "New Jersey", value: "baseball", color: "#636262" },
-                  { label: "New Mexico", value: "football", color: "#636262" },
-                  { label: "New York", value: "baseball", color: "#636262" },
-                  { label: "Texas", value: "hockey", color: "#636262" }
-                ]}
+                items={data}
               />
-            </View>
+              </View>
           </View>
           <TouchableOpacity style={styles.loginBtn}>
-            <Text style={styles.loginBtnTxt}>Login</Text>
+            <Text style={styles.loginBtnTxt}>SignUp</Text>
           </TouchableOpacity>
           <View style={styles.userBottom}>
-            <Text style={styles.userBottomTxt}>Not a User?</Text>
+            <Text style={styles.userBottomTxt}>Already a User?</Text>
             <TouchableOpacity style={{ borderWidth: 0 }}>
               <Text style={styles.userBottomTxt}>
                 {"  "}
@@ -256,16 +228,32 @@ export default class Login extends Component {
             </TouchableOpacity>
           </View>
         </View>
-        {/* </Content> */}
+        </ImageBackground>
       </View>
     );
   }
 }
-
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    paddingRight : 50,
+    width : 400,
+    backgroundColor :"red" // to ensure the text is never behind the icon
+  },
+});
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5"
+    backgroundColor: "#fff"
   },
   user: {
     borderBottomWidth: 0.8,
@@ -274,19 +262,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "85%",
     alignSelf: "center",
-    borderRadius: 5,
-    marginTop: 15,
-    backgroundColor: "#ffffff"
+    alignItems: "center",
+    justifyContent : "space-between",
+    marginTop: 20,
+    backgroundColor: "#fff"
     // marginTop: 10
-  },
-
-  UserImg: {
-    // borderWidth:0,
-    height: 40,
-    width: "12%",
-    // borderRadius: 5,
-    justifyContent: "center"
-    // alignItems: "center"
   },
 
   UsrImg: {
@@ -294,18 +274,13 @@ const styles = StyleSheet.create({
     height: "80%",
     tintColor: "#2f4e63"
   },
-
-  UserText: {
-    //borderWidth:0,
-    height: 40,
-    width: "90%"
-    // borderRadius: 5
-  },
   PwdBox: {
     borderBottomWidth: 0.8,
     borderBottomColor: theme.grayDark,
     height: 40,
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     width: "85%",
     alignSelf: "center",
     marginTop: 12
@@ -341,31 +316,29 @@ const styles = StyleSheet.create({
     height: "50%"
   },
   main: {
-    width: "85%",
+    width: "90%",
     alignSelf: "center",
-    backgroundColor: "#ffffff",
-    height: 420,
-    borderRadius: 8,
-    position: "absolute",
-    bottom: 12,
+    backgroundColor: "#fff",
+    height: "80%",
+    borderRadius: 10,
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+shadowOffset: {
+	width: 0,
+	height: 1,
+},
+shadowOpacity: 0.20,
+shadowRadius: 1.41,
 
-    elevation: 3
+elevation: 2,
+
   },
   login: {
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 10,
-    marginTop: 5
+    marginVertical: 16,
+    // marginTop: 5
   },
   loginTxt: {
-    // fontWeight: "bold",
     fontSize: 26,
     color: FontColor.green,
     fontFamily: "Nunito-Bold"
@@ -403,47 +376,37 @@ const styles = StyleSheet.create({
     color: FontColor.gray
   },
   capPic: {
-    height: 70,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 10
+    marginBottom: 20
   },
   mainUpload: {
     backgroundColor: "#ffffff",
-    borderRadius: 8,
-    height: 40,
+    borderRadius: 6,
     flexDirection: "row",
     justifyContent: "space-around",
     // alignItems: "center",
     width: "90%",
     alignSelf: "center",
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+shadowOffset: {
+	width: 0,
+	height: 1,
+},
+shadowOpacity: 0.18,
+shadowRadius: 1.00,
 
-    elevation: 3
+elevation: 1,
+
+
   },
   takePhoto: {
-    width: "49%",
-    backgroundColor: "#ffffff",
-    borderWidth: 0,
+    width: "50%",
+    backgroundColor: "#fff",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 8
+    borderRadius: 8,
+    height : 45
   },
-  upload: {
-    width: "49%",
-    borderWidth: 0,
-
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ffffff",
-    borderRadius: 8
-  }
 });

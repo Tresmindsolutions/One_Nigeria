@@ -14,7 +14,7 @@ export const theme = {
 };
 export const FontColor = {
   gray: "#BBBBBB",
-  grayDark: "#707070",
+  grayDark: "#999",
   green: "#00E091",
   //   lightGreen: "#7cc242",
   blue: "#148BFF",
