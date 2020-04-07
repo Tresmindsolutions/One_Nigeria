@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Login from "./Login";
 import Signup from "./Signup";
+import SocialHub from "./SocialHub"
 
 const AppNavigator = createStackNavigator(
   {
@@ -16,12 +17,19 @@ const AppNavigator = createStackNavigator(
       navigationOptions: () => ({
         header: null
       })
+    },
+  SocialHub: {
+      screen: SocialHub,
+      navigationOptions: () => ({
+        header: null
+      })
     }
   },
 
   {
     // initialRouteName: "Login"
-    initialRouteName: "Signup"
+    // initialRouteName: "Signup"
+    initialRouteName: "SocialHub"
   }
 );
 
